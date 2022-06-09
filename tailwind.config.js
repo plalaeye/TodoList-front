@@ -1,5 +1,9 @@
 module.exports = {
-  content: ['./pages/*.{js,jsx,ts,tsx}', './pages/**/*.{js,jsx,ts,tsx}', './components/*.{js,jsx,ts,tsx}'],
+  content: [
+    './pages/*.{js,jsx,ts,tsx}',
+    './pages/**/*.{js,jsx,ts,tsx}',
+    './components/*.{js,jsx,ts,tsx}',
+  ],
   theme: {
     extend: {
       colors: {
@@ -26,4 +30,5 @@ module.exports = {
     },
   },
   plugins: [],
+  darkMode: 'class',
 }
