@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import { observer } from 'mobx-react'
 import React from 'react'
 import { useState } from 'react'
-import addTaskPopupStoreInstance from '../contexts/AddTaskPopupStore'
+import addTaskStoreInstance from '../contexts/AddTaskStore'
 import popupStoreInstance from '../contexts/PopupStore'
 import userStoreInstance from '../contexts/UserStore'
 import { TaskStatus } from '../enum/taskStatus'
@@ -11,8 +11,6 @@ import Button from './Button'
 import CloseButton from './CloseButton'
 
 const AddTaskPopup = observer(() => {
-  console.log(popupStoreInstance.isAddTask)
-
   const formRef = React.createRef<HTMLFormElement>()
   const textAreaRef = React.createRef<HTMLTextAreaElement>()
 
@@ -20,28 +18,25 @@ const AddTaskPopup = observer(() => {
     popupStoreInstance.closeAddTask()
     formRef.current?.reset()
     textAreaRef.current!.value = ''
-    addTaskPopupStoreInstance.clear()
+    addTaskStoreInstance.clear()
   }
 
   const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    addTaskPopupStoreInstance.setTitle(e.target.value)
+    addTaskStoreInstance.setTitle(e.target.value)
   }
 
   const onDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    addTaskPopupStoreInstance.setDueDate(e.target.value)
+    addTaskStoreInstance.setDueDate(e.target.value)
   }
 
   const onDetailChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    addTaskPopupStoreInstance.setDetail(e.target.value)
+    addTaskStoreInstance.setDetail(e.target.value)
   }
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (
-      !addTaskPopupStoreInstance.title ||
-      addTaskPopupStoreInstance.title === ''
-    ) {
+    if (!addTaskStoreInstance.title || addTaskStoreInstance.title === '') {
       alert('Please enter your title')
       return
     }
@@ -52,19 +47,19 @@ const AddTaskPopup = observer(() => {
     }
 
     let task: CreateTaskDto = {
-      title: addTaskPopupStoreInstance.title,
-      detail: addTaskPopupStoreInstance.detail,
+      title: addTaskStoreInstance.title,
+      detail: addTaskStoreInstance.detail,
       status: TaskStatus.ONGOING,
       category: category,
       tags: [],
     }
 
-    if (addTaskPopupStoreInstance.dueDate) {
-      task = { ...task, dueDate: new Date(addTaskPopupStoreInstance.dueDate) }
+    if (addTaskStoreInstance.dueDate) {
+      task = { ...task, dueDate: new Date(addTaskStoreInstance.dueDate) }
     }
 
-    if (addTaskPopupStoreInstance.isEdit) {
-      const taskId: string = addTaskPopupStoreInstance._id as string
+    if (addTaskStoreInstance.isEdit) {
+      const taskId: string = addTaskStoreInstance._id as string
       userStoreInstance.updateTask({ _id: taskId, ...task })
     } else {
       userStoreInstance.createTask(task)
@@ -73,7 +68,7 @@ const AddTaskPopup = observer(() => {
     popupStoreInstance.closeAddTask()
     formRef.current?.reset()
     textAreaRef.current!.value = ''
-    addTaskPopupStoreInstance.clear()
+    addTaskStoreInstance.clear()
   }
 
   return (
@@ -91,7 +86,7 @@ const AddTaskPopup = observer(() => {
         <CloseButton onClick={onClose} />
         <div className="flex flex-col justify-center items-center space-y-5 md:space-y-10">
           <h3 className="text-light-4 dark:text-dark-4 text-xl">
-            {addTaskPopupStoreInstance.isEdit ? 'Edit Task' : 'Add New Task'}
+            {addTaskStoreInstance.isEdit ? 'Edit Task' : 'Add New Task'}
           </h3>
           <div className="w-full flex flex-row flex-wrap md:flex-nowrap md:space-x-9 justify-center items-center gap-y-5 md:gap-y-0">
             <div className="w-full">
@@ -101,7 +96,7 @@ const AddTaskPopup = observer(() => {
                 className="grow"
                 placeholder="Title"
                 onChange={onTitleChange}
-                value={addTaskPopupStoreInstance.title}
+                value={addTaskStoreInstance.title}
               />
             </div>
             <div className="w-full md:w-fit md:justify-center md:items-center">
@@ -110,7 +105,7 @@ const AddTaskPopup = observer(() => {
                 type="date"
                 className="grow md:grow-0"
                 onChange={onDateChange}
-                value={addTaskPopupStoreInstance.dueDate}
+                value={addTaskStoreInstance.dueDate}
               />
             </div>
           </div>
@@ -121,20 +116,20 @@ const AddTaskPopup = observer(() => {
               className="w-full"
               placeholder="Task Detail"
               onChange={onDetailChange}
-              value={addTaskPopupStoreInstance.detail}
+              value={addTaskStoreInstance.detail}
             />
           </div>
           <div className="pt-5 md:pt-0">
             <Button
               icon={
-                addTaskPopupStoreInstance.isEdit
+                addTaskStoreInstance.isEdit
                   ? 'fluent:save-24-filled'
                   : 'fluent:add-16-filled'
               }
-              text={addTaskPopupStoreInstance.isEdit ? 'Save' : 'Add'}
+              text={addTaskStoreInstance.isEdit ? 'Save' : 'Add'}
               className={classNames({
                 'dark:bg-dark-green bg-light-green':
-                  addTaskPopupStoreInstance.isEdit,
+                  addTaskStoreInstance.isEdit,
               })}
               type="submit"
             />

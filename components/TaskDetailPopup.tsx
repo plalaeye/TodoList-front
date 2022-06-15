@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import addTaskPopupStoreInstance from '../contexts/AddTaskPopupStore'
+import addTaskStoreInstance from '../contexts/AddTaskStore'
 import popupStoreInstance from '../contexts/PopupStore'
 import userStoreInstance from '../contexts/UserStore'
 import ITask from '../interfaces/Task'
@@ -8,18 +8,22 @@ import CloseButton from './CloseButton'
 import DueDate from './DueDate'
 import { ITaskDetailProps } from './TaskDetailSide'
 
-const TaskDetailPopup = ({ task, onClose }: ITaskDetailProps) => {
+export interface ITaskDetailPopupProps {
+  task: ITask
+}
+
+const TaskDetailPopup = ({ task }: ITaskDetailPopupProps) => {
   const onEdit = () => {
     const date = new Date(task.dueDate as Date)
     const dateString = task.dueDate
       ? date.toISOString().split('T')[0]
       : undefined
 
-    addTaskPopupStoreInstance.setId(task._id)
-    addTaskPopupStoreInstance.setTitle(task.title)
-    addTaskPopupStoreInstance.setDueDate(dateString)
-    addTaskPopupStoreInstance.setDetail(task.detail)
-    addTaskPopupStoreInstance.setEdit()
+    addTaskStoreInstance.setId(task._id)
+    addTaskStoreInstance.setTitle(task.title)
+    addTaskStoreInstance.setDueDate(dateString)
+    addTaskStoreInstance.setDetail(task.detail)
+    addTaskStoreInstance.setEdit()
     popupStoreInstance.openAddTask()
   }
 
@@ -28,6 +32,10 @@ const TaskDetailPopup = ({ task, onClose }: ITaskDetailProps) => {
     if (confirm(text)) {
       userStoreInstance.deleteTask(userStoreInstance.selectedTask)
     }
+  }
+
+  const onClose = () => {
+    userStoreInstance.setTask('')
   }
 
   return (

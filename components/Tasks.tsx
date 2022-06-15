@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { ChangeEvent, useState } from 'react'
-import addTaskPopupStoreInstance from '../contexts/AddTaskPopupStore'
+import addTaskStoreInstance from '../contexts/AddTaskStore'
 import popupStoreInstance from '../contexts/PopupStore'
 import userStoreInstance from '../contexts/UserStore'
 import { TaskStatus } from '../enum/taskStatus'
@@ -57,7 +57,7 @@ const Tasks = observer(() => {
   const [sortedTasks, setSortedTasks] = useState<ITask[]>(sortTasks(sortType))
 
   const onClick = () => {
-    addTaskPopupStoreInstance.setAdd()
+    addTaskStoreInstance.setAdd()
     popupStoreInstance.openAddTask()
   }
 

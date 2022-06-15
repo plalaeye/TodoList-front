@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { observer } from 'mobx-react'
-import addTaskPopupStoreInstance from '../contexts/AddTaskPopupStore'
+import addTaskStoreInstance from '../contexts/AddTaskStore'
 import popupStoreInstance from '../contexts/PopupStore'
 import userStoreInstance from '../contexts/UserStore'
 import ITask from '../interfaces/Task'
@@ -26,11 +26,11 @@ const Task = observer(({ task }: ITaskProps) => {
       ? date.toISOString().split('T')[0]
       : undefined
 
-    addTaskPopupStoreInstance.setId(task._id)
-    addTaskPopupStoreInstance.setTitle(task.title)
-    addTaskPopupStoreInstance.setDueDate(dateString)
-    addTaskPopupStoreInstance.setDetail(task.detail)
-    addTaskPopupStoreInstance.setEdit()
+    addTaskStoreInstance.setId(task._id)
+    addTaskStoreInstance.setTitle(task.title)
+    addTaskStoreInstance.setDueDate(dateString)
+    addTaskStoreInstance.setDetail(task.detail)
+    addTaskStoreInstance.setEdit()
     popupStoreInstance.openAddTask()
   }
 
