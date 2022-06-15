@@ -23,4 +23,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [TailwindCSS](https://tailwindcss.com/docs)
 
 
-![Very Cute Cat](https://4.bp.blogspot.com/-VoXn3em3rYE/XdjEJ3CHKHI/AAAAAABHK8E/uNkCWei0GS4AEIEcmCErpl5UlJlkAkLHQCLcBGAsYHQ/s1600/AW4030178_09.gif)
+![Very Cute Bugcat](https://4.bp.blogspot.com/-VoXn3em3rYE/XdjEJ3CHKHI/AAAAAABHK8E/uNkCWei0GS4AEIEcmCErpl5UlJlkAkLHQCLcBGAsYHQ/s1600/AW4030178_09.gif)
