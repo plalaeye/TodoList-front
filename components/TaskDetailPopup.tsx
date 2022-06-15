@@ -1,15 +1,35 @@
 import classNames from 'classnames'
+import addTaskPopupStoreInstance from '../contexts/AddTaskPopupStore'
+import popupStoreInstance from '../contexts/PopupStore'
+import userStoreInstance from '../contexts/UserStore'
+import ITask from '../interfaces/Task'
 import Button from './Button'
 import CloseButton from './CloseButton'
 import DueDate from './DueDate'
 import { ITaskDetailProps } from './TaskDetailSide'
 
-const TaskDetailPopup = ({
-  task,
-  onClose,
-  onEdit,
-  onDelete,
-}: ITaskDetailProps) => {
+const TaskDetailPopup = ({ task, onClose }: ITaskDetailProps) => {
+  const onEdit = () => {
+    const date = new Date(task.dueDate as Date)
+    const dateString = task.dueDate
+      ? date.toISOString().split('T')[0]
+      : undefined
+
+    addTaskPopupStoreInstance.setId(task._id)
+    addTaskPopupStoreInstance.setTitle(task.title)
+    addTaskPopupStoreInstance.setDueDate(dateString)
+    addTaskPopupStoreInstance.setDetail(task.detail)
+    addTaskPopupStoreInstance.setEdit()
+    popupStoreInstance.openAddTask()
+  }
+
+  const onDelete = () => {
+    const text = 'Are you sure you want to delete this task?'
+    if (confirm(text)) {
+      userStoreInstance.deleteTask(userStoreInstance.selectedTask)
+    }
+  }
+
   return (
     <div
       className={classNames(

@@ -24,40 +24,10 @@ const TaskDetail = observer(() => {
     userStoreInstance.setTask('')
   }
 
-  const onEdit = () => {
-    const date = new Date(task.dueDate as Date)
-    const dateString = task.dueDate
-      ? date.toISOString().split('T')[0]
-      : undefined
-
-    addTaskPopupStoreInstance.setId(task._id)
-    addTaskPopupStoreInstance.setTitle(task.title)
-    addTaskPopupStoreInstance.setDueDate(dateString)
-    addTaskPopupStoreInstance.setDetail(task.detail)
-    addTaskPopupStoreInstance.setEdit()
-    popupStoreInstance.openAddTask()
-  }
-  const onDelete = () => {
-    const text = 'Are you sure you want to delete this task?'
-    if (confirm(text)) {
-      userStoreInstance.deleteTask(userStoreInstance.selectedTask)
-    }
-  }
-
   return (
     <>
-      <TaskDetailSide
-        task={task}
-        onClose={onClose}
-        onEdit={onEdit}
-        onDelete={onDelete}
-      />
-      <TaskDetailPopup
-        task={task}
-        onClose={onClose}
-        onEdit={onEdit}
-        onDelete={onDelete}
-      />
+      <TaskDetailSide task={task} onClose={onClose} />
+      <TaskDetailPopup task={task} onClose={onClose} />
     </>
   )
 })
