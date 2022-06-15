@@ -128,7 +128,7 @@ const AddTaskPopup = observer(() => {
             <Button
               icon={
                 addTaskPopupStoreInstance.isEdit
-                  ? 'ic:round-save-alt'
+                  ? 'fluent:save-24-filled'
                   : 'fluent:add-16-filled'
               }
               text={addTaskPopupStoreInstance.isEdit ? 'Save' : 'Add'}
