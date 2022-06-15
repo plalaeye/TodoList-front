@@ -14,7 +14,10 @@ const ThemeToggle = observer(() => {
   }
 
   return (
-    <div className="absolute top-3.5 right-3.5 z-20" onClick={onClick}>
+    <div
+      className="absolute top-3.5 right-3.5 z-20 cursor-pointer"
+      onClick={onClick}
+    >
       {theme === Theme.LIGHT ? (
         <Icon
           icon="heroicons-solid:sun"
