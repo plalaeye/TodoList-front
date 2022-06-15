@@ -5,7 +5,7 @@ import userStoreInstance from '../contexts/UserStore'
 const index = () => {
   return (
     <>
-      <ThemeToggle userStore={userStoreInstance} />
+      <ThemeToggle />
       <Login />
     </>
   )
