@@ -1,4 +1,5 @@
 import { Icon } from '@iconify/react'
+import classNames from 'classnames'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { ChangeEvent, useState } from 'react'
@@ -93,7 +94,9 @@ const Tasks = observer(() => {
         </div>
         <AddButton
           onClick={onClick}
-          className="text-light-4 dark:text-dark-4"
+          className={classNames('text-light-4 dark:text-dark-4', {
+            hidden: userStoreInstance.selectedCategory === 'Completed',
+          })}
         />
       </div>
     </div>
