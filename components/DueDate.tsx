@@ -20,17 +20,23 @@ const DueDate = observer(({ dueDate, taskStatus, showDate }: IDueDateProps) => {
 
   let text = dueDate ? `${date?.toISOString().split('T')[0]}` : 'No DueDate'
 
-  if (isOverdue) text = 'Overdue!'
-
   return (
-    <div className="flex flex-row items-center space-x-2 text-light-red dark:text-dark-red min-w-fit">
-      <Icon
-        icon={classNames(
-          { 'material-symbols:date-range-rounded': !isOverdue },
-          { 'jam:triangle-danger-f': isOverdue }
-        )}
-        className="text-2xl"
-      />
+    <div
+      className={classNames(
+        'flex flex-row items-center space-x-2 min-w-fit',
+        { 'text-light-red dark:text-dark-red': isOverdue },
+        { 'text-light-4 dark:text-dark-4': isOverdue }
+      )}
+    >
+      <div title={isOverdue ? 'Overdue' : 'DueDate'}>
+        <Icon
+          icon={classNames(
+            { 'material-symbols:date-range-rounded': !isOverdue },
+            { 'jam:triangle-danger-f': isOverdue }
+          )}
+          className="text-2xl"
+        />
+      </div>
       <h5 className="text-sm font-semibold">{text}</h5>
     </div>
   )
