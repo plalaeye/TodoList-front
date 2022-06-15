@@ -2,6 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  @apply font-Inter;
+@layer base {
+  html {
+    @apply font-Inter;
+  }
+
+  input,
+  textarea {
+    @apply border-light-4 dark:border-dark-4 bg-light-2 dark:bg-dark-2 border-2 text-light-4 dark:text-dark-4 rounded-lg w-full px-2.5 py-1;
+  }
+
+  select {
+    @apply bg-light-1 dark:bg-dark-1 text-light-4 dark:text-dark-4;
+  }
+}
+
+@layer components {
+  .scrollbar::-webkit-scrollbar-track {
+    @apply bg-light-1 dark:bg-dark-1;
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    width: 4px;
+    height: 2px;
+    @apply bg-light-1 dark:bg-dark-1;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-light-3 dark:bg-dark-3;
+  }
 }
