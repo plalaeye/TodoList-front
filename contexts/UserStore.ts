@@ -69,9 +69,10 @@ export class userStore {
       (task) => task._id === this.selectedTask
     )?.category
     if (
-      curTaskCat &&
-      this.selectedCategory !== 'All Tasks' &&
-      this.selectedCategory !== curTaskCat
+      !curTaskCat ||
+      (curTaskCat &&
+        this.selectedCategory !== 'All Tasks' &&
+        this.selectedCategory !== curTaskCat)
     ) {
       this.selectedTask = ''
     }
