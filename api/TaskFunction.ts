@@ -53,8 +53,6 @@ export const createTask = async (
 export const updateTask = async (task: ITask): Promise<IUser | undefined> => {
   const { _id, ...taskWithoutId } = task
 
-  console.log('updateTask')
-
   try {
     const res = await axios.put(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/tasks/${task._id}`,
@@ -62,10 +60,8 @@ export const updateTask = async (task: ITask): Promise<IUser | undefined> => {
       { withCredentials: true }
     )
     const data: IUser = res.data
-    console.log('updateTask', data)
     return data
   } catch (e) {
-    console.log(e)
     return undefined
   }
 }
