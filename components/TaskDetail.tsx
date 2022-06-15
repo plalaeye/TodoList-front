@@ -1,7 +1,7 @@
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import React from 'react'
-import addTaskPopupStoreInstance from '../contexts/AddTaskPopupStore'
+import addTaskStoreInstance from '../contexts/AddTaskStore'
 import popupStoreInstance from '../contexts/PopupStore'
 import userStoreInstance from '../contexts/UserStore'
 import ITask from '../interfaces/Task'
@@ -20,14 +20,10 @@ const TaskDetail = observer(() => {
   const hasDetail: boolean =
     task.detail !== undefined && task.detail !== null && task.detail !== ''
 
-  const onClose = () => {
-    userStoreInstance.setTask('')
-  }
-
   return (
     <>
-      <TaskDetailSide task={task} onClose={onClose} />
-      <TaskDetailPopup task={task} onClose={onClose} />
+      <TaskDetailSide task={task} />
+      <TaskDetailPopup task={task} />
     </>
   )
 })
