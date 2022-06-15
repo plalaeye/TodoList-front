@@ -19,7 +19,7 @@ const TaskDetailPopup = ({
     >
       <div className="flex flex-col w-4/5 h-fit rounded-xl shadow-lg bg-light-2 dark:bg-dark-2 p-8 space-y-10">
         <CloseButton onClick={onClose} />
-        <div className="space-y-5">
+        <div className="space-y-5 text-light-4 dark:text-dark-4">
           <h3 className="text-2xl font-semibold">{task.title}</h3>
           <div className="px-2 space-y-5 justify-center">
             <DueDate
