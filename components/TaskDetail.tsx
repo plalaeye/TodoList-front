@@ -38,7 +38,7 @@ const TaskDetail = observer(() => {
     popupStoreInstance.openAddTask()
   }
   const onDelete = () => {
-    const text = 'Are you sure you want to delete this task'
+    const text = 'Are you sure you want to delete this task?'
     if (confirm(text)) {
       userStoreInstance.deleteTask(userStoreInstance.selectedTask)
     }
