@@ -42,11 +42,7 @@ const TaskDetailPopup = ({ task, onClose }: ITaskDetailProps) => {
         <div className="space-y-5 text-light-4 dark:text-dark-4">
           <h3 className="text-2xl font-semibold">{task.title}</h3>
           <div className="px-2 space-y-5 justify-center">
-            <DueDate
-              dueDate={task.dueDate}
-              showDate={true}
-              taskStatus={task.status}
-            />
+            <DueDate dueDate={task.dueDate} taskStatus={task.status} />
             <div className="grow flex flex-col">
               <h2 className="font-semibold">Detail</h2>
               <h3 className={classNames('p-3 grow', { italic: !task.detail })}>

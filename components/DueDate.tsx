@@ -6,17 +6,13 @@ import { TaskStatus } from '../enum/taskStatus'
 interface IDueDateProps {
   dueDate: Date | undefined
   taskStatus: TaskStatus
-  showDate?: boolean
 }
 
-const DueDate = observer(({ dueDate, taskStatus, showDate }: IDueDateProps) => {
+const DueDate = observer(({ dueDate, taskStatus }: IDueDateProps) => {
   const date = dueDate ? new Date(dueDate) : undefined
 
   const isOverdue =
-    date &&
-    date < new Date() &&
-    !showDate &&
-    taskStatus !== TaskStatus.COMPLETED
+    date && date < new Date() && taskStatus !== TaskStatus.COMPLETED
 
   let text = dueDate ? `${date?.toISOString().split('T')[0]}` : 'No DueDate'
 
