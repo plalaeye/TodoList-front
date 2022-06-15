@@ -1,6 +1,6 @@
 import { action, makeObservable, observable } from 'mobx'
 
-export class addTaskPopupStore {
+export class addTaskStore {
   _id: string | undefined = undefined
   title: string | undefined = undefined
   dueDate: string | undefined = undefined
@@ -57,6 +57,6 @@ export class addTaskPopupStore {
   }
 }
 
-const addTaskPopupStoreInstance = new addTaskPopupStore()
+const addTaskStoreInstance = new addTaskStore()
 
-export default addTaskPopupStoreInstance
+export default addTaskStoreInstance
