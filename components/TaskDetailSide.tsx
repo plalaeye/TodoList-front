@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { observer } from 'mobx-react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import addTaskStoreInstance from '../contexts/AddTaskStore'
 import userStoreInstance from '../contexts/UserStore'
 import { TaskStatus } from '../enum/taskStatus'
@@ -103,6 +103,15 @@ const TaskDetailSide = observer(({ task }: ITaskDetailProps) => {
     addTaskStoreInstance.clear()
   }
 
+  const [isFirstRender, setIsFirstRender] = React.useState(true)
+
+  useEffect(() => {
+    if (addTaskStoreInstance.isEdit && isFirstRender) {
+      onEdit()
+      setIsFirstRender(false)
+    }
+  }, [addTaskStoreInstance.isEdit])
+
   return (
     <div
       className={classNames(
@@ -148,16 +157,9 @@ const TaskDetailSide = observer(({ task }: ITaskDetailProps) => {
             <textarea
               ref={textAreaRef}
               disabled={!isEdit}
-              className={classNames('grow justify-start disabled:resize-none', {
-                italic: !task.detail,
-              })}
-              value={
-                isEdit
-                  ? addTaskStoreInstance.detail
-                  : task.detail
-                  ? task.detail
-                  : 'No detail provided'
-              }
+              className="grow justify-start disabled:resize-none"
+              placeholder={!task.detail ? 'No detail provided' : ''}
+              value={isEdit ? addTaskStoreInstance.detail : task.detail}
               onChange={onDetailChange}
             />
           </div>
