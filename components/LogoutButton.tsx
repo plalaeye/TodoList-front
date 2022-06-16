@@ -1,11 +1,15 @@
 import { Icon } from '@iconify/react'
 import Router from 'next/router'
 import { logout } from '../api/AccountFunction'
+import addTaskStoreInstance from '../contexts/AddTaskStore'
+import userStoreInstance from '../contexts/UserStore'
 
 const LogoutButton = () => {
   const onClick = async () => {
     await logout()
     Router.push('/login')
+    userStoreInstance.clear()
+    addTaskStoreInstance.clear()
   }
 
   return (
