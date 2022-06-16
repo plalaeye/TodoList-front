@@ -15,6 +15,11 @@ const Login = observer(() => {
       return
     }
 
+    if (name.length > 12) {
+      alert('Name cannot be longer than 12 characters')
+      return
+    }
+
     const data = await login(name)
     if (data) {
       userStoreInstance.setUser(data)
