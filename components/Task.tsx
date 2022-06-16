@@ -12,7 +12,7 @@ export interface ITaskProps {
 }
 
 const Task = observer(({ task }: ITaskProps) => {
-  let delay = 200
+  let delay = 100
   let prevent = false
 
   const onClick = () => {
@@ -21,17 +21,7 @@ const Task = observer(({ task }: ITaskProps) => {
 
   const onDoubleClick = () => {
     userStoreInstance.setTask(task._id)
-    const date = new Date(task.dueDate as Date)
-    const dateString = task.dueDate
-      ? date.toISOString().split('T')[0]
-      : undefined
-
-    addTaskStoreInstance.setId(task._id)
-    addTaskStoreInstance.setTitle(task.title)
-    addTaskStoreInstance.setDueDate(dateString)
-    addTaskStoreInstance.setDetail(task.detail)
     addTaskStoreInstance.setEdit()
-    popupStoreInstance.openAddTask()
   }
 
   const handleClick = () => {
