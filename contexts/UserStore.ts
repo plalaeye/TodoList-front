@@ -49,6 +49,7 @@ export class userStore {
     this.category = user.category
     this.tasks = user.tasks
     this.setTheme(user.theme)
+    this.selectedCategory = 'All Tasks'
   }
 
   *setTheme(theme: Theme) {
@@ -104,6 +105,14 @@ export class userStore {
     this.tasks = this.tasks.filter((task) => task._id !== taskId)
     yield deleteTask(taskId)
     if (taskId === this.selectedTask) this.setTask('')
+  }
+
+  clear() {
+    this._id = ''
+    this.name = ''
+    this.category = []
+    this.tasks = []
+    this.selectedCategory = 'All Tasks'
   }
 }
 
